@@ -76,7 +76,7 @@ function App() {
           <input
             type="text"
             className="search-bar"
-            placeholder="Search...."
+            placeholder="Search by your location. If empty page comes,try a bigger location(e.g. your division)"
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
