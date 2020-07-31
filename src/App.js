@@ -103,6 +103,19 @@ function App() {
                     : "Stormy"
                   : "app"}
               </div>
+              <div className="weather-info">
+                <p>Maximum Temperature : {weather.main["temp_max"]}</p>
+                <p>Minimum Temperature : {weather.main["temp_min"]}</p>
+                <p>Feels like : {weather.main["feels_like"]}</p>
+                <p>Humidity : {weather.main["humidity"]}%</p>
+                <p>Pressure : {weather.main["pressure"]}</p>
+                <p>Sunrise : {weather.sys["sunrise"]}</p>
+                <p>Sunset : {weather.sys["sunset"]}</p>
+                <p>Pressure : {weather.main["pressure"]}</p>
+                <p>
+                  {weather.coord["lon"]}, {weather.coord["lat"]}
+                </p>
+              </div>
             </div>
           </div>
         ) : (
