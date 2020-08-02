@@ -18,6 +18,7 @@ function App() {
           setWeather(result);
           setQuery("");
           console.log(result);
+          console.log(result.weather[0]["main"]);
         });
     }
   };
@@ -54,7 +55,7 @@ function App() {
 
     let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`;
+    return `${day}, ${date} ${month}, ${year}`;
   };
 
   return (
@@ -76,7 +77,7 @@ function App() {
           <input
             type="text"
             className="search-bar"
-            placeholder="Search by your location. If empty page comes,try a bigger location(e.g. your division)"
+            placeholder="Search by your location"
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
@@ -91,27 +92,40 @@ function App() {
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
             <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}°C</div>
-              <div className="weather">
-                {typeof weather.main !== "undefined"
-                  ? weather.clouds["all"] < 30
-                    ? "Sunny"
-                    : weather.clouds["all"] > 30 && weather.clouds["all"] < 60
-                    ? "Cloudy"
-                    : weather.clouds["all"] > 60 && weather.clouds["all"] < 80
-                    ? "Rainy"
-                    : "Stormy"
-                  : "app"}
+              <div className="temp">
+                {Math.round(weather.main.temp)}°C
+                <br></br>
+                <div className="feels-like">
+                  Feels like {weather.main["feels_like"]} °C
+                </div>
               </div>
+              <div className="weather">{weather.weather[0]["main"]}</div>
               <div className="weather-info">
-                <p>Maximum Temperature : {weather.main["temp_max"]}</p>
-                <p>Minimum Temperature : {weather.main["temp_min"]}</p>
-                <p>Feels like : {weather.main["feels_like"]}</p>
-                <p>Humidity : {weather.main["humidity"]}%</p>
-                <p>Pressure : {weather.main["pressure"]}</p>
-                <p>Sunrise : {weather.sys["sunrise"]}</p>
-                <p>Sunset : {weather.sys["sunset"]}</p>
                 <p>
+                  <i>Max Temp</i> : {weather.main["temp_max"]} °C
+                </p>
+                <p>
+                  <i>Min Temp :</i> {weather.main["temp_min"]} °C
+                </p>
+                <p>
+                  <i>Wind Speed :</i> {weather.wind.speed} m/s
+                </p>
+                <p>
+                  <i>Humidity :</i> {weather.main["humidity"]}%
+                </p>
+                <p>
+                  <i>Pressure :</i> {weather.main["pressure"]}
+                </p>
+                <p>
+                  <i>Sunrise : </i>
+                  {new Date(weather.sys["sunrise"] * 1000).toLocaleTimeString()}
+                </p>
+                <p>
+                  <i>Sunset : </i>
+                  {new Date(weather.sys["sunset"] * 1000).toLocaleTimeString()}
+                </p>
+                <p>
+                  <i>Coordinates : </i>
                   {weather.coord["lon"]}, {weather.coord["lat"]}
                 </p>
               </div>
