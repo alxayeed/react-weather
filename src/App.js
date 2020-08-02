@@ -111,7 +111,6 @@ function App() {
                 <p>Pressure : {weather.main["pressure"]}</p>
                 <p>Sunrise : {weather.sys["sunrise"]}</p>
                 <p>Sunset : {weather.sys["sunset"]}</p>
-                <p>Pressure : {weather.main["pressure"]}</p>
                 <p>
                   {weather.coord["lon"]}, {weather.coord["lat"]}
                 </p>
